@@ -33,6 +33,16 @@ def split_text(docs: list[Document]):
     chunks = text_splitter.split_documents(docs)
     print(f"Split {len(docs)} documents into {len(chunks)} chunks.")
 
+    # Add metadata: name, date
+    for chunk in chunks:
+        source = chunk.metadata['source'].split(' ', 1)
+        name = source[1].lstrip().split(' ')[0] # remove whitespace from beginning before splitting
+        if name:
+            chunk.metadata['name'] = name.lower()
+        else:
+            chunk.metadata['name'] = 'not specified'
+        chunk.metadata['date'] = source[0].split('/')[-1]
+
     return chunks
 
 def save_to_chroma(chunks: list[Document], embeddings):

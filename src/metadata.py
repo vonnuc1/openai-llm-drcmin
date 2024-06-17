@@ -16,6 +16,12 @@ load_dotenv(override=True, verbose=True)
 DATA_PATH = os.environ.get("MD_PATH", "")
 CHROMA_PATH = os.environ.get("CHROMA_PATH", "")
 
+
+"""embeddings = AzureOpenAIEmbeddings(
+    deployment_name = "text-embedding-ada-002",
+    api_version="2023-05-15",
+)"""
+
 embeddings = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
 
 def load_documents():

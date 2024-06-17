@@ -41,4 +41,3 @@ print(vec_tsne.shape)
 
 plt.scatter(vec_tsne[:,0], vec_tsne[:,1])
 plt.show()
-
